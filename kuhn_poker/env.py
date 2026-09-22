@@ -13,9 +13,11 @@ Terminal histories and payoffs (pot always split 1-for-1 ante, +1 per bet):
 """
 from __future__ import annotations
 
+import itertools
 import random
 from dataclasses import dataclass
 from enum import IntEnum
+from fractions import Fraction
 
 _TERMINAL_HISTORIES = {"pp", "bp", "bb", "pbp", "pbb"}
 
@@ -33,6 +35,14 @@ def deal(seed: int | None = None) -> "KuhnPokerState":
     return KuhnPokerState(cards=(p0_card, p1_card))
 
 
+def deal_outcomes() -> list[tuple["KuhnPokerState", Fraction]]:
+    """Every chance outcome (ordered deal) with its probability, for exact
+    full-tree traversal (e.g. vanilla CFR) instead of sampling one deal."""
+    ordered_deals = list(itertools.permutations(Card, 2))
+    prob = Fraction(1, len(ordered_deals))
+    return [(KuhnPokerState(cards=cards), prob) for cards in ordered_deals]
+
+
 @dataclass(frozen=True)
 class KuhnPokerState:
     cards: tuple[Card, Card]
@@ -47,6 +57,8 @@ class KuhnPokerState:
         return ["p", "b"]
 
     def apply_action(self, action: str) -> "KuhnPokerState":
+        if self.is_terminal():
+            raise ValueError(f"cannot apply action {action!r} to terminal history {self.history!r}")
         if action not in ("p", "b"):
             raise ValueError(f"illegal action: {action!r}")
         return KuhnPokerState(self.cards, self.history + action)

@@ -25,9 +25,11 @@ approximation).
 | CFR+ | ✅ planned | ✅ planned |
 | Deep CFR | — | ✅ planned |
 
-**Vanilla CFR** ([Zinkevich et al., 2007](https://papers.nips.cc/paper/2007)) —
+**Vanilla CFR** ([Zinkevich, Johanson, Bowling, Piccione, 2007](https://proceedings.neurips.cc/paper/2007/hash/08d98638c6fcd194a4b1e6992063e944-Abstract.html)) —
 regret matching at every information set, self-play traversal of the full game
-tree, average strategy converges to a Nash equilibrium.
+tree. The theorem is specifically for two-player zero-sum, perfect-recall
+games: the time-averaged strategy converges to a Nash equilibrium (the
+current iterate itself is not guaranteed to converge on its own).
 
 **CFR+** ([Tammelin, 2014](https://arxiv.org/abs/1407.5042)) — regret-matching+
 (negative regrets clamped to zero) with linear averaging; converges
@@ -140,7 +142,7 @@ style, and PR review expectations.
 
 ## References
 
-- Zinkevich, Johanson, Bowling, Piccione. [Regret Minimization in Games with Incomplete Information](https://papers.nips.cc/paper/2007). NeurIPS 2007.
+- Zinkevich, Johanson, Bowling, Piccione. [Regret Minimization in Games with Incomplete Information](https://proceedings.neurips.cc/paper/2007/hash/08d98638c6fcd194a4b1e6992063e944-Abstract.html). NeurIPS 2007.
 - Tammelin. [Solving Large Imperfect Information Games Using CFR+](https://arxiv.org/abs/1407.5042). 2014.
 - Brown, Lerer, Gross, Sandholm. [Deep Counterfactual Regret Minimization](https://arxiv.org/abs/1811.00164). ICML 2019.
 - Brown, Sandholm. [Superhuman AI for multiplayer poker](https://www.science.org/doi/10.1126/science.aay2400). Science, 2019.

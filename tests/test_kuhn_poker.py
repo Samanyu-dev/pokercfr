@@ -1,6 +1,7 @@
 import unittest
+from fractions import Fraction
 
-from kuhn_poker.env import Card, KuhnPokerState, deal
+from kuhn_poker.env import Card, KuhnPokerState, deal, deal_outcomes
 
 
 def play_out(state: KuhnPokerState, actions: str) -> KuhnPokerState:
@@ -56,6 +57,20 @@ class TestKuhnPokerEnv(unittest.TestCase):
         state = play_out(KuhnPokerState(cards=(Card.QUEEN, Card.JACK)), "p")
         self.assertEqual(state.information_set_key(0), "Qp")
         self.assertEqual(state.information_set_key(1), "Jp")
+
+    def test_apply_action_rejects_action_after_terminal(self):
+        state = play_out(KuhnPokerState(cards=(Card.KING, Card.JACK)), "pp")
+        with self.assertRaises(ValueError):
+            state.apply_action("p")
+
+    def test_deal_outcomes_enumerates_every_ordered_deal_uniformly(self):
+        outcomes = deal_outcomes()
+        self.assertEqual(len(outcomes), 6)  # 3 cards, ordered, choose 2
+        for _, prob in outcomes:
+            self.assertEqual(prob, Fraction(1, 6))
+        self.assertEqual(sum(prob for _, prob in outcomes), 1)
+        dealt_hands = {state.cards for state, _ in outcomes}
+        self.assertEqual(len(dealt_hands), 6)  # all distinct ordered pairs
 
 
 if __name__ == "__main__":
