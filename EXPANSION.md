@@ -5,6 +5,36 @@ Every item stays inside the boundary set by #43 (Research track, Kuhn/Leduc
 only, no new games, no live bot/UI) — expansion means more rigor on the games
 we already have, not broader scope.
 
+## Player-count axis (committed — tracked as issues)
+
+Considered and rejected: full Texas Hold'em, as a "go bigger" move — this is
+the exact thing #43 (and the professor's feedback it quotes) scoped out, so
+reopening it would just re-trigger that concern. A "4-card game" variant was
+also floated and dropped without further scoping.
+
+Instead: **multiplayer Leduc**, N = 2..6 players. This is the axis that
+actually made Pluribus notable — its headline result was 6-player Hold'em,
+and the significance wasn't the bigger deck, it was the player count. CFR's
+Nash-equilibrium convergence guarantee is only *proven* for 2-player
+zero-sum games; at 3+ players there's no such proof, yet Pluribus worked
+anyway. This project measures exactly where and how badly that theoretical
+gap shows up — on a game small enough to also compute an exact best response
+at every player count, which is impossible for real Hold'em.
+
+Still Leduc, just parameterized by seat count (same precedent as OpenSpiel's
+own Leduc implementation) — reuses the existing engine, CFR/CFR+/DCFR
+algorithms, and exploitability harness, so it doesn't reopen the "new game"
+scope conversation.
+
+- Risk & Szafron. *Using Counterfactual Regret Minimization to Create Competitive Multiplayer Poker Agents*. AAMAS 2010.
+- *Successful Nash Equilibrium Agent for a 3-Player Imperfect-Information Game*.
+- Bowling et al. *Heads-up Limit Hold'em Poker is Solved*. Science, 2015 — cited only as an external data point (900 core-years, 3.19×10¹⁴ information sets) to put our measured small-scale growth rate in context, not something we attempt to reproduce.
+
+Issues: #50 (generalize the Leduc environment to N players), #51 (the
+scaling study itself — NashConv vs. player count, compute-to-convergence
+growth curve). Related, already-tracked, simpler precedent: #27 (Kuhn at 3
+players specifically).
+
 ## Core study (committed — tracked as issues)
 
 One experiment design, cut into two issues for ticket-tracking, but run as a
