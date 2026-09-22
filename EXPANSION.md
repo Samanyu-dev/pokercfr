@@ -47,7 +47,9 @@ pool.
 This needs real new state (a belief over opponent types, a fixed-opponent
 pool, a restricted-Nash-response solver) — not an afternoon's extension.
 **Gate:** only start once the core study's results matrix is actually
-landing and there are 3+ weeks of margin before the final deadline.
+landing and there is verified, comfortable margin before the final
+deadline. Note: the final deadline isn't recorded in the tracker yet — this
+gate can't honestly be called "satisfied" until that's confirmed.
 
 ## Backlog — candidates, not yet issues
 
@@ -65,7 +67,13 @@ Pending a triage pass before any of these become tracked issues.
 - Deep CFR as a deliberate overkill test on a game small enough to solve exactly — does function approximation cost anything here?
 
 **Comparative game theory**
-- CFR vs. Fictitious Self-Play (Heinrich, Lanctot, Silver, ICML 2015) — two distinct no-regret-adjacent dynamics, both provably converge to Nash, compare rate/stability.
+- CFR vs. Fictitious Self-Play (Heinrich, Lanctot, Silver, ICML 2015) — two
+  distinct no-regret-adjacent dynamics, compare rate/stability. **Correction:**
+  the paper's Nash-convergence guarantee applies to full-width fictitious
+  play; the sampled/learned variant it introduces (FSP) is a distinct
+  algorithm with its own, more limited theoretical treatment — don't claim
+  both variants inherit the same guarantee without checking which one is
+  actually being compared against CFR.
 - Regret decomposition by information set — which decision points take longest to converge.
 
 **Theory-practice gap**
@@ -76,10 +84,18 @@ Pending a triage pass before any of these become tracked issues.
 
 **Libratus/Pluribus techniques**
 - Regret-based pruning (Brown & Sandholm, NIPS 2015) — validate on a game small enough to check by brute force.
-- Strategy-based warm-starting (Brown & Sandholm, AAAI 2016) — warm-start Leduc from the exact Kuhn equilibrium.
+- Strategy-based warm-starting (Brown & Sandholm, AAAI 2016). **Caveat:**
+  "warm-start Leduc from the exact Kuhn equilibrium" is an unvalidated idea,
+  not a described method — the cited technique needs a strategy already
+  defined on the *target* game. A Kuhn-to-Leduc information-set mapping
+  would have to be designed and justified first; that's real design work,
+  not a given.
 
-**Flagged, not recommended as a silent addition**
-- Three-player Kuhn Poker — already tracked as #27 (assigned to the game-engine track). Scientifically interesting (CFR's 2-player-zero-sum guarantee breaks down), but it's a new game variant, which #43 explicitly scoped out. Treat any further 3-player work as an explicit, named exception to that rule, not a default extension.
+**Closed as out of scope**
+- Three-player Kuhn Poker (#27, closed) and a Limit Hold'em subset (#37,
+  closed) — both new game variants, which #43 explicitly scoped out. The
+  multiplayer research question is covered instead by #51 (multiplayer
+  Leduc), which stays within the existing Leduc engine.
 
 ## Next step
 
