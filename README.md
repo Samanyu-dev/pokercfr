@@ -103,7 +103,11 @@ python3 -m unittest discover -s tests -v
 
 ## Roadmap
 
-Tracked as GitHub issues, grouped by epic. Rough dependency order:
+Tracked as GitHub issues, grouped by epic. Rough dependency order. See
+[`EXPANSION.md`](EXPANSION.md) for the planned algorithm/condition-axis
+study ([#46](https://github.com/Samanyu-dev/pokercfr/issues/46),
+[#47](https://github.com/Samanyu-dev/pokercfr/issues/47)) and gated/backlog
+stretch work beyond the milestones below.
 
 **M1 — Tabular CFR pipeline for Kuhn Poker** ([#1](https://github.com/Samanyu-dev/pokercfr/issues/1))
 - [x] Kuhn Poker game tree + information sets ([#19](https://github.com/Samanyu-dev/pokercfr/issues/19), [#3](https://github.com/Samanyu-dev/pokercfr/issues/3))
