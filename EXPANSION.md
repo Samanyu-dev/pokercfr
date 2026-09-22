@@ -26,14 +26,17 @@ own Leduc implementation) — reuses the existing engine, CFR/CFR+/DCFR
 algorithms, and exploitability harness, so it doesn't reopen the "new game"
 scope conversation.
 
-- Risk & Szafron. *Using Counterfactual Regret Minimization to Create Competitive Multiplayer Poker Agents*. AAMAS 2010.
-- *Successful Nash Equilibrium Agent for a 3-Player Imperfect-Information Game*.
+- Abou Risk, Szafron. *Using Counterfactual Regret Minimization to Create Competitive Multiplayer Poker Agents*. AAMAS 2010.
+- Ganzfried, Nowak, Pinales. *Successful Nash Equilibrium Agent for a 3-Player Imperfect-Information Game*. Games 9(33), 2018.
 - Bowling et al. *Heads-up Limit Hold'em Poker is Solved*. Science, 2015 — cited only as an external data point (900 core-years, 3.19×10¹⁴ information sets) to put our measured small-scale growth rate in context, not something we attempt to reproduce.
 
-Issues: #50 (generalize the Leduc environment to N players), #51 (the
-scaling study itself — NashConv vs. player count, compute-to-convergence
-growth curve). Related, already-tracked, simpler precedent: #27 (Kuhn at 3
-players specifically).
+Issues: #50 (generalize the Leduc environment to N players — note: deck size
+scales as 2(N+1) per OpenSpiel's own convention, which confounds player
+count with card distribution; #51 tracks this explicitly), #51 (the scaling
+study itself — NashConv vs. player count, compute-to-convergence growth
+curve, precise NashConv definition given there). #27 (Kuhn at 3 players) was
+closed as a redundant new-game variant once this axis was committed — see
+"Closed as out of scope" below.
 
 ## Core study (committed — tracked as issues)
 
