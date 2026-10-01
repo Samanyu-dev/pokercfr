@@ -6,6 +6,17 @@ reuses the same engine (`poker/`) and solvers (`cfr/`); a rung is a config,
 not a new codebase. Every rung reports exploitability / NashConv, so moving up
 is measured, not just claimed.
 
+## Hypotheses (Research track)
+
+- **H1 — size:** on 2-player rungs, average-strategy exploitability decays at
+  CFR's O(1/√T) rate (faster for CFR+) regardless of size, but iterations
+  and wall-clock time to reach a fixed ε grow with info-set count. We measure
+  that growth rate across rungs.
+- **H2 — players:** at 3+ players, CFR has no Nash guarantee. We expect
+  NashConv to plateau above zero, with the plateau rising with player count.
+- **H3 — abstraction:** at the top rung, the exploitability we can measure
+  reflects the coarseness of the card abstraction, not just solver iterations.
+
 ## Tier 1 — one betting round, configurable deck (`poker.LADDER`)
 
 Measured with tabular vanilla CFR in pure Python, one M-series core
