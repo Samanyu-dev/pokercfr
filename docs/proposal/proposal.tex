@@ -28,7 +28,7 @@
 
 %% ---------------------------------------------------------------- Overview
 \thispagestyle{empty}
-{\LARGE\bfseries Scaling Counterfactual Regret Minimization: a controlled study across poker game size and player count\par}
+{\LARGE\bfseries\raggedright Scaling Counterfactual Regret Minimization: a controlled study across poker game size and player count\par}
 \vspace{4pt}
 {\large CS F407 / U407 Artificial Intelligence --- Project Proposal\par}
 \vspace{12pt}
@@ -85,7 +85,7 @@ Counterfactual Regret Minimization (CFR)~[1] and its descendants~[2--5] power ev
 \section{Proposed approach \& methodology}
 
 \subsection{Environment}
-All games are implemented in our own Python engine; no poker data is needed. One configuration, \texttt{GameConfig(ranks, suits, cards\_dealt, players)}, generates the whole Kuhn family. The betting is Kuhn-style $N$-player betting: ante 1, check or bet 1, and after a bet every other player calls or folds once. With more than one card dealt, hands are ranked by pairs, two pair, trips and quads, then by high cards. Straights and flushes are added only if we reach 5-card hands. A separate Leduc engine adds a public card, two betting rounds and a configurable raise cap. The ladder engine and an $N$-player vanilla CFR are already in the repository and unit-tested: CFR reproduces Kuhn's $-1/18$ value and its known equilibrium family.
+All games are implemented in our own Python engine; no poker data is needed. One configuration object, \texttt{GameConfig}, with four parameters (ranks, suits, cards dealt, players), generates the whole Kuhn family. The betting is Kuhn-style $N$-player betting: ante 1, check or bet 1, and after a bet every other player calls or folds once. With more than one card dealt, hands are ranked by pairs, two pair, trips and quads, then by high cards. Straights and flushes are added only if we reach 5-card hands. A separate Leduc engine adds a public card, two betting rounds and a configurable raise cap. The ladder engine and an $N$-player vanilla CFR are already in the repository and unit-tested: CFR reproduces Kuhn's $-1/18$ value and its known equilibrium family.
 
 \subsection{The game ladder: what we will solve, smallest first}
 We grow the game one factor at a time. Each step changes a single parameter of the previous one, so its effect on solving cost can be isolated (H2, H3). Sizes below are computed by our engine. A ``deal'' is one way of distributing private cards; full-traversal CFR visits every deal on every iteration.
